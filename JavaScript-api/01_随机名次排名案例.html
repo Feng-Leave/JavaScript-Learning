@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>一等奖：<span id="one"></span></h1>
+      <h3>二等奖：<span id="two"></span></h3>
+      <h5>三等奖：<span id="three"></span></h5>
+    </div>
+    <script>
+      const personArr = ['周杰伦', '张杰', '刘德华']
+
+      const random1 = Math.floor(Math.random() * personArr.length)
+      const one = document.querySelector('#one')
+      one.innerHTML = personArr[random1]
+      personArr.splice(random1, 1)
+
+      const random2 = Math.floor(Math.random() * personArr.length)
+      const two = document.querySelector('#two')
+      two.innerHTML = personArr[random2]
+      personArr.splice(random2, 1)
+
+      const random3 = Math.floor(Math.random() * personArr.length)
+      const three = document.querySelector('#three')
+      three.innerHTML = personArr[random3]
+      personArr.splice(random3, 1)
+    </script>
+  </body>
+</html>
