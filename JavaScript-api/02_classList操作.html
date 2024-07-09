@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 300px;
+        height: 200px;
+        background-color: pink;
+      }
+      .active {
+        background-color: skyblue;
+        margin: 0 auto;
+        border: 1px solid blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      let div = document.querySelector('div')
+
+      div.classList.add('active')
+      div.classList.remove('active')
+      div.classList.toggle('active')
+      console.log(div);
+    </script>
+  </body>
+</html>
