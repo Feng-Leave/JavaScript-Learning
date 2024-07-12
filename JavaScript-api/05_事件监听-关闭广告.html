@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .ad {
+        position: relative;
+        width: 1000px;
+        height: 200px;
+        background-color: pink;
+        margin: 300px auto;
+        text-align: center;
+        line-height: 200px;
+        font-size: 80px;
+      }
+      .close {
+        position: absolute;
+        font-size: 30px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background-color: skyblue;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ad">
+      我是广告
+      <div class="close">X</div>
+    </div>
+    <script>
+      const closeBtn = document.querySelector('.close')
+      const box = document.querySelector('.ad')
+      closeBtn.addEventListener('click',function(){
+        box.style.display = 'none'
+      })
+    </script>
+  </body>
+</html>
