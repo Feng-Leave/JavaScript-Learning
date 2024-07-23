@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 500px;
+        height: 300px;
+        display: flex;
+      }
+      .box a {
+        height: 30px;
+        text-decoration: none;
+        font-size: 30px;
+        color: pink;
+        padding: 15px;
+        text-align: center;
+      }
+      .line {
+        position: absolute;
+        top: 65px;
+        left: 15px;
+        width: 60px;
+        height: 3px;
+        background-color: #fb7299;
+        transition: all 0.3s;
+        transform: translate(8px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <a href="#">首页</a>
+      <a href="#">动画</a>
+      <a href="#">番剧</a>
+      <a href="#">音乐</a>
+      <a href="#">舞蹈</a>
+      <div class="line"></div>
+    </div>
+    <script>
+      const box = document.querySelector('.box')
+      const line = document.querySelector('.line')
+      box.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          console.log(e.target.offsetLeft)
+          line.style.transform = `translateX(${e.target.offsetLeft}px)`
+        }
+      })
+    </script>
+  </body>
+</html>
