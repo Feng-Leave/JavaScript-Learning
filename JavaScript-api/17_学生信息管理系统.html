@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>学生信息管理</title>
+  </head>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+    }
+    a {
+      text-decoration: none;
+      color: #721c24;
+    }
+    form {
+      text-align: center;
+    }
+    table {
+      text-align: center;
+      margin: 0 auto;
+      width: 800px;
+      border-collapse: collapse;
+      color: #004085;
+    }
+    th {
+      padding: 10px;
+      background: #cfe5ff;
+      font-size: 20px;
+      font-weight: 400;
+    }
+    td,
+    th {
+      border: 1px solid #b8daff;
+    }
+    td {
+      padding: 10px;
+      color: #666;
+      text-align: center;
+      font-size: 16px;
+    }
+    tbody tr {
+      background: #fff;
+    }
+    tbody tr:hover {
+      background: #e1ecf8;
+    }
+    .info {
+      width: 900px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    .info input,
+    .info select {
+      width: 80px;
+      height: 27px;
+      outline: none;
+      border-radius: 5px;
+      border: 1px solid #b8daff;
+      padding-left: 5px;
+      box-sizing: border-box;
+      margin-right: 15px;
+    }
+    .info button {
+      width: 60px;
+      height: 27px;
+      background-color: #004085;
+      outline: none;
+      border: 0;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .info .age {
+      width: 50px;
+    }
+  </style>
+  <body>
+    <h1>新增学生</h1>
+    <!-- prettier-ignore -->
+    <form class="info" autocomplete="off">
+      姓名：<input type="text" class="uname" name="uname">
+      年龄：<input type="text" class="age" name="age">
+      性别：<select name="gender" class="gender" name="gender">
+           <option value="男">男</option>
+           <option value="女">女</option>
+           </select>
+      分数：<input type="text" class="scores" name="scores">
+      班级：<select name="Class" class="Class">
+            <option value="1班">1班</option>
+            <option value="2班">2班</option>
+            <option value="3班">3班</option>
+            <option value="4班">4班</option>
+            <option value="5班">5班</option>
+           </select>
+      <button class="submit">录入</button>
+    </form>
+    <h1>龙虎榜</h1>
+    <table>
+      <thead>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>分数</th>
+        <th>班级</th>
+        <th>操作</th>
+      </thead>
+      <tbody>
+        <!-- <tr>
+          <td>1</td>
+          <td>小明</td>
+          <td>19</td>
+          <td>男</td>
+          <td>90</td>
+          <td>1班</td>
+          <td>
+            <a href="javascript:">删除</a>
+          </td>
+        </tr> -->
+      </tbody>
+    </table>
+    <script>
+      //获取元素
+      const uname = document.querySelector('.uname')
+      const age = document.querySelector('.age')
+      const gender = document.querySelector('.gender')
+      const scores = document.querySelector('.scores')
+      const Class = document.querySelector('.Class')
+      const info = document.querySelector('.info')
+      const tbody = document.querySelector('tbody')
+      const items = document.querySelectorAll('[name]')
+      //定义一个空数组，用来储存数据
+      const arr = []
+      //录入模块
+      info.addEventListener('submit', function (e) {
+        e.preventDefault()
+        //判断输入数据是否为空，为空则中断代码
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].value === '') {
+            return alert('输入数据不能为空')
+          }
+        }
+        //创建对象
+        const obj = {
+          stuId: arr.length + 1,
+          uname: uname.value,
+          age: age.value,
+          gender: gender.value,
+          scores: scores.value,
+          Class: Class.value,
+        }
+        //追加对象到arr数组中
+        arr.push(obj)
+        info.reset()
+        render()
+      })
+      //渲染函数
+      function render() {
+        //先清空之前的tbody数据防止出现bug
+        tbody.innerHTML = ''
+        for (let i = 0; i < arr.length; i++) {
+          const tr = document.createElement('tr')
+          tr.innerHTML = `
+           <td>${arr[i].stuId}</td>
+           <td>${arr[i].uname}</td>
+           <td>${arr[i].age}</td>
+           <td>${arr[i].gender}</td>
+           <td>${arr[i].scores}</td>
+           <td>${arr[i].Class}</td>
+            <td>
+             <a href="javascript:" data-id=${i}>删除</a>
+            </td>
+          `
+          //追加对象到tbody中
+          tbody.appendChild(tr)
+        }
+      }
+      //删除模块
+      tbody.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') {
+          arr.splice(e.target.dataset.id, 1)
+          render()
+        }
+      })
+    </script>
+  </body>
+</html>
